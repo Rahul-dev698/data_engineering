@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  spark:
+    image: bitnami/spark:latest
+    container_name: spark-ingestion
+    volumes:
+      - ../data:/app/data              # Mount your local data folder
+      - ./ingestion:/app/ingestion     # Mount your ingestion scripts
+    working_dir: /app/ingestion
+    command: spark-submit batch_ingest.py
